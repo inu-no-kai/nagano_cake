@@ -6,9 +6,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
 
     root 'homes#top'
+    get 'home/about' => 'homes#about', as: 'about'
 
     resources :items, only: [:index, :show]
 
@@ -44,9 +45,8 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :admin do
+  scope module: :admin do
 
-  root 'homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 
     resources :genres, only: [:index, :create, :edit, :update]
