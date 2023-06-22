@@ -1,0 +1,6 @@
+<h2>商品画像</h2>
+<h3>商品一覧（全<%= @products.count %>件）</h3>
+<% @products.each do |product| %>
+  <p><%= product.name %></p>
+  <p><%= product.price %></p>
+<% end %>

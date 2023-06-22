@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'products/index'
+    get 'products/show'
+  end
   # 顧客用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -11,9 +15,10 @@ Rails.application.routes.draw do
     root 'homes#top'
     get 'home/about' => 'homes#about', as: 'about'
     get "search" => "searches#search"
+
     resources :products, only: [:index, :show]
 
-    resources :customers, only: [:show, :edit, :update,]
+    resources :customers, only: [:show, :edit, :update]
       resources :customers do
         collection do
           get 'quit'
