@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
 
     root 'homes#top'
 
