@@ -10,8 +10,8 @@ Rails.application.routes.draw do
 
     root 'homes#top'
     get 'home/about' => 'homes#about', as: 'about'
-
-    resources :items, only: [:index, :show]
+    get "search" => "searches#search"
+    resources :products, only: [:index, :show]
 
     resources :customers, only: [:show, :edit, :update,]
       resources :customers do
@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-
-  scope module: :admin do
+  get "search" => "searches#search"
+  namespace :admin do
 
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
 
