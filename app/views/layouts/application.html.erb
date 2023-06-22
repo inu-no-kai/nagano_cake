@@ -10,8 +10,8 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-colum vh-100">
-    <header>
+  <body>
+    <header class="shadow-sm">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand" href="/">
@@ -26,25 +26,25 @@
             <!--adminログイン時のヘッダー-->
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to "商品一覧", items_path %>
+                <%= link_to "商品一覧", items_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "会員一覧", admin_customers_path %>
+                <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "注文履歴一覧", admin_order_path %>
+                <%= link_to "注文履歴一覧", admin_order_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ジャンル一覧", admin_genres_path %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' %>
               </li>
               <li class="mt-3">
-                <%= form_with url: search_path, local: true, method: :get do |f| %>
+               <p class="text-right-bottom"> <%= form_with url: search_path, local: true, method: :get do |f| %>
                   <%= f.text_field :word %>
                   <%= f.submit "検索" %>
-                <% end %>
+                <% end %></p>
               </li>
 
             <!--customersログイン時のヘッダー-->
@@ -56,42 +56,42 @@
                  さん
               </li>
               <li class="nav-item">
-                <%= link_to "マイページ", customer_path %>
+                <%= link_to "マイページ", customer_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品一覧", products_path %>
+                <%= link_to "商品一覧", products_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", cart_items_path %>
+                <%= link_to "カート", cart_items_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-dark' %>
               </li>
               <li class="mt-3">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
+               <p class="text-right-bottom"> <%= form_with url: search_path, method: :get, local: true do |f| %>
                   <%= f.text_field :word %>
                   <%= f.submit "検索" %>
-                <% end %>
+                <% end %></p>
               </li>
             <% else %>
             <!--ログイン前時のヘッダー-->
               <li class="nav-item">
-                <%= link_to "About", about_path %>
+                <%= link_to "About", about_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品一覧", products_path %>
+                <%= link_to "商品一覧", products_path, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, data: {"turbolinks" => false} %>
+                <%= link_to "新規登録", new_customer_registration_path, data: {"turbolinks" => false}, class: 'nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path %>
+                <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-dark' %>
               </li>
               <li class="mt-3">
-                <%= form_with url: search_path, method: :get, local: true do |f| %>
+               <p class="text-right-bottom"> <%= form_with url: search_path, method: :get, local: true do |f| %>
                   <%= f.text_field :word %>
                   <%= f.submit "検索" %>
-                <% end %>
+                <% end %></p>
               </li>
             <% end %>
             </ul>
