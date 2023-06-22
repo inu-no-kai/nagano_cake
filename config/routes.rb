@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   scope module: :public do
 
     root 'homes#top'
+    get 'home/about' => 'homes#about', as: 'about'
+    get "search" => "searches#search"
 
     resources :products, only: [:index, :show]
 
@@ -47,10 +49,10 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-
+  get "search" => "searches#search"
   namespace :admin do
 
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :products, only: [:index, :new, :create, :show, :edit, :update]
 
     resources :genres, only: [:index, :create, :edit, :update]
 
