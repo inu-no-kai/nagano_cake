@@ -10,4 +10,3 @@ product = Product.create!(
   price: 1,
   description: "美味しいケーキです",
 )
-product.image.attach(io: File.open(Rails.root.join('app/assets/images/no_image.jpg')),filename: 'no_image.jpg')

@@ -1,6 +1,7 @@
-<h2>商品画像</h2>
+
 <h3>商品一覧（全<%= @products.count %>件）</h3>
 <% @products.each do |product| %>
+  <h2>商品画像<%= image_tag product.get_image, format: "jpeg" %></h2>
   <p><%= product.name %></p>
   <p><%= product.price %></p>
   
