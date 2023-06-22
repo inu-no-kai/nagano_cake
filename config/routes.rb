@@ -1,18 +1,22 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'products/index'
+    get 'products/show'
+  end
   # 顧客用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
 
     root 'homes#top'
 
-    resources :items, only: [:index, :show]
+    resources :products, only: [:index, :show]
 
-    resources :customers, only: [:show, :edit, :update,]
+    resources :customers, only: [:show, :edit, :update]
       resources :customers do
         collection do
           get 'quit'
@@ -44,11 +48,9 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  namespace :admin do
+  scope module: :admin do
 
-    root 'homes#top'
-
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :products, only: [:index, :new, :create, :show, :edit, :update]
 
     resources :genres, only: [:index, :create, :edit, :update]
 
