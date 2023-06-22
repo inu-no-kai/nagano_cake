@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   scope module: :public do
 
     root 'homes#top'
+    get 'home/about' => 'homes#about', as: 'about'
+    get "search" => "searches#search"
 
     resources :products, only: [:index, :show]
 
@@ -48,6 +50,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  get "search" => "searches#search"
   namespace :admin do
 
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
