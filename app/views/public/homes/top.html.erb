@@ -8,14 +8,20 @@
     </P>
   </div>
 </div>
-<div>
-  <h2>新着商品</h2>
-   <% @products.each do |product| %>
-    <%= link_to product_path(product) do %>
-     <%= image_tag product.get_image(100,100) %>
-    <% end %>
-    <%= product.name %>
-    <P>¥<%= product.price %></P>
-   <% end %>
-</div>
+<table>
+  <tbody>
+    <h2>新着商品</h2>
+     <tr>
+      <% @products.each do |product| %>
+        <td>
+          <%= link_to product_path(product) do %>
+          <%= image_tag product.get_image(100,100) %>
+          <% end %>
+          <p><%= product.name %></p>
+          <p>¥<%= product.price %></p>
+        </td>
+      <% end %>
+     </tr>
+  </tbody>
+</table>
 <div><%= link_to "全ての商品をみる", products_path %></div>
