@@ -1,6 +1,35 @@
-<h2>商品画像</h2>
-<h3>商品一覧（全<%= @products.count %>件）</h3>
-<% @products.each do |product| %>
-  <p><%= product.name %></p>
-  <p><%= product.price %></p>
-<% end %>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+     <div class='col-md-3 border'>
+      <ul class="navbar-nav ml-auto">
+        <h2>ジャンル検索</h2>
+        
+        <li class="nav-item">ケーキ</li>
+        
+        <li class="nav-item">焼き菓子</li>
+        
+        <li class="nav-item">プリン</li>
+        
+        <li class="nav-item">キャンディー</li>
+        
+      </ul>
+    </div>
+    
+      <div class="col-md-8 offset-md-1">
+        <h3>商品一覧（全<%= @products.count %>件）</h3>
+          <% @products.each do |product| %>
+          <div class="row product">
+            <div class="col-md-4">
+              <%= link_to product_path(product) do %>
+                <%= image_tag product.get_image(50, 50), format: "jpeg" %>
+              <% end %>
+            </div>
+            </div>
+            <div class="col-md-4">
+              <p><%= product.name %></p>
+              <p><%= product.price %></p>
+              <% end %>
+            </div>
+      </div>
+    </div>
+  </div>
