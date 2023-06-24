@@ -1,0 +1,22 @@
+<h1>マイページ</h1>
+
+<a>登録する</a>
+
+<%= link_to "編集する", edit_customer_path(params[:id])  %>
+
+
+
+<p><%= @customer.last_name %></p>
+
+<p><%= @customer.first_name %></p>
+
+<p><%= @customer.last_name_kana %></p>
+
+<p><%= @customer.first_name_kana %></p>
+
+<p><%= @customer.address %></p>
+
+<p><%= @customer.post_code %></p>
+
+<p><%= @customer.phone_number %></p>
+
