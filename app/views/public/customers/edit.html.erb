@@ -3,45 +3,47 @@
 <%= form_with model: @customer do |f| %>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :姓 %>
+  <%= f.text_field :first_name %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :名 %>
+  <%= f.text_field :last_name %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :セイ %>
+  <%= f.text_field :first_name_kana %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :メイ %>
+  <%= f.text_field :last_name_kana %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :郵便番号 %>
+  <%= f.text_field :post_code %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :住所 %>
+  <%= f.text_field :address %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :電話番号 %>
+  <%= f.text_field :phone_number %>
 </div>
 
 <div class="field">
-  <%= f.label %>
-  <%=%>
+  <%= f.label :メールアドレス %>
+  <%= f.email_field :email %>
 </div>
 
 <%= f.submit '編集内容を保存' %>
 
 <% end %>
+
+<%= link_to "退会する", quit_path %>
