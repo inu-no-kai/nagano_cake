@@ -19,12 +19,10 @@ Rails.application.routes.draw do
     resources :products, only: [:index, :show]
 
     resources :customers, only: [:show, :edit, :update]
-      resources :customers do
-        collection do
-          get 'quit'
-          patch 'unsubscribe'
-        end
-      end
+
+    get '/customers/:id/quit' => 'customers#quit', as: 'quit'
+
+    patch 'customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
 
     resources :cart_items, only: [:index, :update, :destroy, :create]
       resources :cart_items do
