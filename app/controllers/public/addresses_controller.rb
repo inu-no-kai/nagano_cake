@@ -1,6 +1,6 @@
 class Public::AddressesController < ApplicationController
 before_action :authenticate_customer!
-before_action :is_matching_login_address, only: [:edit, :update]
+
   def index
     @address = Address.new
     @customer = current_customer
@@ -49,13 +49,6 @@ before_action :is_matching_login_address, only: [:edit, :update]
   private
   def address_params
     params.require(:address).permit(:post_code, :address, :name)
-  end
-#ここがいまいちわからないので明日聞く
-  def is_matching_login_address
-    address = Address.find(params[:id])
-    unless address.id == current_address.id
-      redirect_to address_path
-    end
   end
 
 end
