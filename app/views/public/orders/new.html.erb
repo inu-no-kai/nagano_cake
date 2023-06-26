@@ -1,0 +1,38 @@
+<div class="text-left ml-5 mt-4">
+  <h1 class="text-left ml-5 pl-5 pb-2">注文情報入力</h1>
+    <%= form_with(model: @order, url: confirm_orders_path) do |form| %>
+    <div class="form-group">
+      <label for="payment_method">支払方法</label>
+      <div class="form-check">
+        <%= form.radio_button :payment_method, 'credit_card', checked: true, class: 'form-check-input' %>
+        <label class="form-check-label" for="order_payment_method_credit_card">クレジットカード</label>
+      </div>
+      <div class="form-check">
+        <%= form.radio_button :payment_method, 'transfer', class: 'form-check-input' %>
+        <label class="form-check-label" for="order_payment_method_bank_transfer">銀行振込</label>
+      </div>
+    </div>
+
+  <h1>お届け先</h1>
+    <div class="form-group"><%= form.label :select_address, 'ご自身の住所' %>
+      <%= form.radio_button :select_address, '0' %>
+      <%= %>
+    </div>
+    <div class="form-group"><%= form.label :select_address, '登録住所から選択' %>
+      <%= form.radio_button :select_address, '1' %>
+      <%=  %>
+    </div>
+    <div class="form-group"><%= form.label :select_address, '新しいお届け先' %>
+    <%= form.radio_button :select_address, '2' %>
+      <%= form.label :delivery_post_code, '郵便番号' %>
+      <%= form.text_field :delivery_post_code %>
+    
+      <%= form.label :delivery_address, '住所' %>
+      <%= form.text_field :delivery_address %>
+
+      <%= form.label :delivery_name, '宛名' %>
+      <%= form.text_field :delivery_name %>
+    </div>
+        <%= form.submit '確認画面に進む', class: 'btn btn-primary' %>
+      <% end %>
+</div>
