@@ -50,7 +50,7 @@
             <!--customersログイン時のヘッダー-->
             <% elsif customer_signed_in? %>
               <li class="nav-item">
-                ようこそ <%= link_to customers_path do %>
+                ようこそ <%= link_to customer_path(current_customer) do %>
                 <strong><%= current_customer.last_name %><%= current_customer.first_name %></strong>
                 <% end %>
                  さん
