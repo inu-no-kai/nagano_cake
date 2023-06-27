@@ -1,0 +1,59 @@
+<div class="container my-5">
+  <div class="row">
+    <h2>商品詳細</h2>
+  </div>
+
+  <div class="row mt-3">
+
+    <div class="offset-sm-1 col-sm-3">
+      <%= image_tag @product.image, size: '200x200' %>
+    </div>
+
+    <div class="col-sm-4">
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>商品名</td>
+            <td><%= @product.name %></td>
+          </tr>
+
+          <tr>
+            <td>商品説明</td>
+            <td><%= @product.description %></td>
+          </tr>
+
+          <tr>
+            <td>ジャンル</td>
+            <td><%= @product.genre.name %></td>
+          </tr>
+
+          <tr>
+            <td>税込価格(税抜価格)</td>
+            <td>
+              <%= @product.price %>(<%= (@product.price * 1.1).floor %>)円
+            </td>
+          </tr>
+
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+            <% if @product.is_sold_out %>
+              <p>販売停止</p>
+            <% elsif %>
+              <p>販売中</p>
+            <% end %>
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="offset-sm-9 col-sm-2">
+      <%= link_to "編集する", edit_admin_product_path(@product), class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>
