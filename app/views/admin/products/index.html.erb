@@ -1,0 +1,48 @@
+<div class="container my-5">
+  <div class="row">
+    <h2>商品一覧画面</h2>
+  </div>
+  <div class="row text-right">
+    <%= link_to "+", new_admin_product_path, class: "btn btn-lg rounded-circle text-right ml-auto shadow-sm" %>
+  </div>
+
+  <div class="row mt-1">
+    <table class="table table-hover text-center">
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜き価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @products.each do |product| %>
+          <tr>
+            <td><%= product.id %></td>
+            <td><%= link_to product.name, admin_product_path(product) %></td>
+            <td><%= product.price %></td>
+            <td><%= product.genre.name %></td>
+            <td>
+            <% if product.is_sold_out %>
+              <p>販売停止</p>
+            <% elsif %>
+              <p>販売中</p>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+<div class="container">
+  <div class="row">
+   <div class="col-md-4 offset-md-4 py-2  mt-5">
+   </div>
+  </div>
+</div>
+
+</div>
