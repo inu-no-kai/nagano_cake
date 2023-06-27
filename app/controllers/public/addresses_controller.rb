@@ -27,13 +27,8 @@ before_action :authenticate_customer!
 
   def update
     @address = Address.find(params[:id])
-    if @address.update(address_params)
-       flash[:success] = "配送先の変更内容を保存しました。"
-       redirect_to addresses_path
-    else
-       flash[:danger] = "配送先の変更内容に不備があります。"
-       redirect_back(fallback_location: root_path)
-    end
+    @address.update(address_params)
+    redirect_to addresses_path
   end
 
   def destroy
