@@ -1,7 +1,5 @@
 class Public::CustomersController < ApplicationController
 
-<<<<<<< HEAD
-=======
   def show
     @customer = Customer.find(params[:id])
   end
@@ -31,5 +29,4 @@ class Public::CustomersController < ApplicationController
   def customer_params
   	  params.require( :customer ).permit( :last_name, :first_name, :last_name_kana, :first_name_kana, :phone_number, :email, :password, :post_code, :address,:is_delete )
   end
->>>>>>> develop
 end
