@@ -18,7 +18,7 @@
           <% @products.each do |product| %>
             <td>
               <%= link_to product_path(product) do %>
-              <%= image_tag product.get_image(100,100) %>
+              <%= image_tag product.get_image(10,10) %>
               <% end %>
               <p><%= product.name %></p>
               <p>¥<%= product.price %></p>
