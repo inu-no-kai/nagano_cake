@@ -18,10 +18,14 @@
             <tr>
               <td><%= order.created_at %></td>
               <td><%= order.delivery_address %></td>
-              <td><%=  %></td>
+              <td>
+                <% order.order_items.each do |item| %>
+                  <p><%= item.product.name %> × <%= item.quantity %></p>
+                <% end %>
+              </td>
               <td><%= order.invoice_amount %></td>
-              <td><%=  %></td>
-              <td><%=  %></td>
+              <td><%= order.making_status %></td>
+              <td><%= link_to "注文詳細", order_path(order) %></td>
             </tr>
           <% end %>
         </tbody>
@@ -29,4 +33,5 @@
     </div>
   </div>
 </div>
+
 

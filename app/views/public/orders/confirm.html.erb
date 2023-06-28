@@ -12,10 +12,15 @@
       <th></th>
     </tr>
   </thead>
-
+  <%# @cart_items.each do |item| %>
+        <tr>
+          <td><%#= item.product.name %></td>
+          <td><%#= item.price %></td>
+          <td><%#= item.quantity %></td>
+          <td><%#= item.invoice_amount %></td>
+        </tr>
+      <%# end %>
 </table>
-
-
   <h2>支払方法</h2>
   <p><%= @order.payment_method_i18n %></p>
 

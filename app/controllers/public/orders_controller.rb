@@ -3,11 +3,11 @@ class Public::OrdersController < ApplicationController
       # 新しい注文のインスタンスを作成
       @order = Order.new
     end
-  
+   
     def confirm
       @order = Order.new(order_params)
       # 注文情報のバリデーションや他の処理を行う場合はここに記述します
-  
+      #@cart_items = current_customer.cart_items
       if @order.valid?
         # 注文情報が有効な場合の処理を記述します
         render :confirm # 確認画面のビューを表示します
@@ -54,12 +54,12 @@ class Public::OrdersController < ApplicationController
     
     def show
       # 特定の注文の取得
-      @order = Order.find(params[:id])
+      # @order = Order.find(params[:id])
     end
   
     private
   
     def order_params
-      params.require(:order).permit(:payment_method, :delivery_address, :delivery_post_code, :delivery_name)
+      params.require(:order).permit(:payment_method, :delivery_address, :delivery_post_code, :delivery_name, :addresse)
     end
 end
