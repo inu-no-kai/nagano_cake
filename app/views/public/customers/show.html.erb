@@ -1,22 +1,60 @@
-<h1>マイページ</h1>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-sm-8 px-sm-0 offset-sm-1">
+      <h1>マイページ</h1>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-3 px-sm-0 offset-sm-1">
+     <h4>登録情報</h4>
+    </div>
+    <div class="col-sm-4 px-sm-0">
+      <%= link_to "編集する", edit_customer_path(params[:id]), class:"btn btn-success"%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6 px-sm-0 offset-sm-1">
+      <table class="table table-bordered">
+        <tr>
+          <th class="table-achive">氏名</th>
+          <td><%= @customer.first_name + @customer.last_name %></td>
+        </tr>
+        <tr>
+          <th class="table-achive">カナ</th>
+          <td><%= @customer.first_name_kana + @customer.last_name_kana %></td>
+        </tr>
+        <tr>
+          <th class="table-achive">郵便番号</th>
+          <td><%= @customer.post_code %></td>
+        </tr>
+        <tr>
+          <th class="table-achive">住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th class="table-achive">電話番号</th>
+          <td><%= @customer.phone_number %></td>
+        </tr>
+        <tr>
+          <th class="table-achive">メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-3 px-sm-0 offset-sm-1"><h4>配送先</h4></div>
+    <div class="col-sm-3 px-sm-0">
+      <%= link_to "一覧を見る", addresses_path, data: {"turbolinks" => false}, class:"btn btn-primary" %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <div class="col-sm-3 px-sm-0 offset-sm-1"><h4>注文履歴</h4></div>
+    <div class="col-sm-3 px-sm-0">
+      <%= link_to "一覧を見る", orders_path, class:"btn btn-primary" %>
+    </div>
+  </div>
 
-<a>登録する</a>
-
-<%= link_to "編集する", edit_customer_path(params[:id])  %>
 
 
-
-<p><%= @customer.first_name %></p>
-
-<p><%= @customer.last_name %></p>
-
-<p><%= @customer.first_name_kana %></p>
-
-<p><%= @customer.last_name_kana %></p>
-
-<p><%= @customer.address %></p>
-
-<p><%= @customer.post_code %></p>
-
-<p><%= @customer.phone_number %></p>
-
+</div>
