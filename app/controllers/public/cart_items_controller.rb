@@ -29,7 +29,23 @@ class Public::CartItemsController < ApplicationController
 
     redirect_to cart_items_path
   end
+  
+  def update
+    cart_item = CartItem.find(params[:id])
+    quantity = params[:cart_item][:quantity].to_i
 
+  if quantity > 0
+    cart_item.update(quantity: quantity)
+    flash[:success] = "数量が更新されました。"
+  else
+    cart_item.destroy
+    flash[:success] = "カートアイテムが削除されました。"
+  end
+
+  redirect_to cart_items_path
+end
+
+  
   def destroy
     @cart_items = current_customer.cart_items
     @cart_item = @cart_items.find(params[:id])
