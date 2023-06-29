@@ -1,0 +1,89 @@
+<div class="text-left ml-3 mt-3">
+  <h3 class="ml-3 pl-3 pb-2">注文情報入力</h3>
+  <%= form_with(model: @order, url: confirm_orders_path) do |form| %>
+    <table class="table table-borderless">
+      <tr>
+        <td>
+          <label for="payment_method">支払方法</label>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-check">
+            <%= form.radio_button :payment_method, 'credit_card', checked: true, class: 'form-check-input' %>
+            <label class="form-check-label" for="order_payment_method_credit_card">クレジットカード</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-check">
+            <%= form.radio_button :payment_method, 'transfer', class: 'form-check-input' %>
+            <label class="form-check-label" for="order_payment_method_bank_transfer">銀行振込</label>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>お届け先</h3>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= form.label :select_address, 'ご自身の住所' %>
+              <%= form.radio_button :select_address, '0' %>
+                <% if current_customer.address.present? %>
+                  <%= current_customer.post_code %>
+                   <%= current_customer.address %>
+                     <%= current_customer.last_name %>
+                  <%= current_customer.first_name %>
+                <% else %>
+              <p>住所が登録されていません。</p>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= form.label :select_address, '登録住所から選択' %>
+            <%= form.radio_button :select_address, '1' %>
+            <%= form.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :name) %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <%= form.label :select_address, '新しいお届け先' %>
+            <%= form.radio_button :select_address, '2' %>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form.label :delivery_post_code, '郵便番号' %>
+          <%= form.text_field :delivery_post_code, class: 'form-control' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form.label :delivery_address, '住所' %>
+          <%= form.text_field :delivery_address, class: 'form-control' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form.label :delivery_name, '宛名' %>
+          <%= form.text_field :delivery_name, class: 'form-control' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= form.submit '確認画面に進む', class: 'btn btn-primary' %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>
