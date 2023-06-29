@@ -16,7 +16,8 @@
     <div class='col-md-5 offset-md-1'>
       <table>
         <tr>
-           <td><%= image_tag @product.get_image(100,100), format: "jpeg" %></td>
+           <td>
+             <%= image_tag @product.get_image(100,100), format: "jpeg" %></td>
            <td>
             <h1><%= @product.name %></h1>
               <p>
@@ -25,12 +26,12 @@
               <p>
                 <%= (@product.price * 1.1).round %> 円（税込）
               </p>
-              <%= form_with(model: CartItem.new, url: cart_items_path, method: :post ) do |form|%>
-              <%= form.hidden_field :product_id, value: @product.id %>
-              <%= form.select :quantity,*[1..10] %>
-              <%= form.submit "カートに追加", class: "btn btn-success" %>
-              <% end %>
-           </td>
+
+               <%= form_with(model: CartItem.new, url: cart_items_path, method: :post ) do |form|%>
+                 <%= form.hidden_field :product_id, value: @product.id %>
+                 <%= form.select :quantity,*[1..10] %>
+                 <%= form.submit "カートに追加", class: "btn btn-success" %>
+               <% end %>
           </tr>
       </table>
     </div>
