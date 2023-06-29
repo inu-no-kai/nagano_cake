@@ -5,24 +5,28 @@ class Public::OrdersController < ApplicationController
     end
    
     def confirm
-      @order = Order.new(order_params)
-      # 注文情報のバリデーションや他の処理を行う場合はここに記述します
-      #@cart_items = current_customer.cart_items
-      if @order.valid?
-        # 注文情報が有効な場合の処理を記述します
-        render :confirm # 確認画面のビューを表示します
-      else
-        # 注文情報が無効な場合の処理を記述します
-        render :new # 入力画面のビューを再表示します
+      if params[:order] [:select_address] == "0"
+        @order = Order.new(order_params)
+        @order.delivery_post_code = current_customer.post_code
+        @order.delivery_address = current_customer.address
+        @order.delivery_name = current_customer.first_name + current_customer.last_name
+        
+      elsif params[:order] [:select_address] == "1"
+        @order = Order.new(order_params)
+        @address = Address.find(params[:order][:address_id])
+        @order.delivery_address = @address.address
+        @order.delivery_post_code = @address.post_code
+        @order.delivery_name = @address.name
       end
+        @cart_items = current_customer.cart_items
     end
-  
+    
     def create
       # 注文の作成
       @order = Order.new(order_params)
       # 注文を保存するなどの処理を行う
       @order.postage = 800
-      @order.invoice_amount = 0
+      @order.customer_id = current_customer.id
       if @order.save
           @cart_items = current_customer.cart_items
           @cart_items.each do |cart_item|
@@ -37,7 +41,7 @@ class Public::OrdersController < ApplicationController
           current_customer.cart_items.destroy_all
 
         # 注文完了画面のビューを表示
-        redirect_to orders_path
+        redirect_to thanks_orders_path
       else
         # 保存に失敗した場合は入力画面に戻す
         render :new
@@ -45,21 +49,21 @@ class Public::OrdersController < ApplicationController
     end
   
     def thanks
-      @order = Order.find(params[:id])  # 注文情報を取得する例（idには注文IDを指定する必要があります）
+      
     end
   
     def index
-      @orders = Order.all
+      @orders = current_customer.orders.all
     end
     
     def show
       # 特定の注文の取得
-      # @order = Order.find(params[:id])
+       @order = Order.find(params[:id])
     end
   
     private
   
     def order_params
-      params.require(:order).permit(:payment_method, :delivery_address, :delivery_post_code, :delivery_name, :addresse)
+      params.require(:order).permit(:payment_method, :delivery_address, :delivery_post_code, :delivery_name, :invoice_amount, :postage)
     end
 end
