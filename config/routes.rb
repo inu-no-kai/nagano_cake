@@ -35,7 +35,7 @@ Rails.application.routes.draw do
         collection do
           post 'confirm'
           get 'thanks'
-      end
+        end
     end
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
