@@ -31,13 +31,12 @@ Rails.application.routes.draw do
         end
       end
 
-    resources :orders, only: [:new, :index, :show, :create]
-      resources :orders do
+    resources :orders, only: [:new, :index, :show, :create] do
         collection do
           post 'confirm'
           get 'thanks'
-        end
       end
+    end
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
