@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get "search" => "searches#search"
   namespace :admin do
 
+   get "/" => "homes#top"
+
     resources :products, only: [:index, :new, :create, :show, :edit, :update]
 
     resources :genres, only: [:index, :create, :edit, :update]
