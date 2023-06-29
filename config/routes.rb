@@ -1,24 +1,28 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'products/index'
+    get 'products/show'
+  end
   # 顧客用
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
 
-  namespace :public do
+  scope module: :public do
 
     root 'homes#top'
+    get 'home/about' => 'homes#about', as: 'about'
+    get "search" => "searches#search"
 
-    resources :items, only: [:index, :show]
+    resources :products, only: [:index, :show]
 
-    resources :customers, only: [:show, :edit, :update,]
-      resources :customers do
-        collection do
-          get 'quit'
-          patch 'unsubscribe'
-        end
-      end
+    resources :customers, only: [:show, :edit, :update]
+
+    get '/customers/:id/quit' => 'customers#quit', as: 'quit'
+
+    patch 'customers/:id/unsubscribe' => 'customers#unsubscribe', as: 'unsubscribe'
 
     resources :cart_items, only: [:index, :update, :destroy, :create]
       resources :cart_items do
@@ -27,13 +31,12 @@ Rails.application.routes.draw do
         end
       end
 
-    resources :orders, only: [:new, :index, :show, :create]
-      resources :orders do
+    resources :orders, only: [:new, :index, :show, :create] do
         collection do
           post 'confirm'
           get 'thanks'
         end
-      end
+    end
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
@@ -44,11 +47,12 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  get "search" => "searches#search"
   namespace :admin do
 
-    root 'homes#top'
+   get "/" => "homes#top"
 
-    resources :items, only: [:index, :new, :create, :show, :edit, :update]
+    resources :products, only: [:index, :new, :create, :show, :edit, :update]
 
     resources :genres, only: [:index, :create, :edit, :update]
 

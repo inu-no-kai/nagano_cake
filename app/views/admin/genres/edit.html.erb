@@ -1,0 +1,20 @@
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 offset-sm-1">
+      <h2>ジャンル編集</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto">
+        <%= form_with model: @genre, url: admin_genre_path, method: :patch, local: true do |f| %>
+         <div claa="form-group">
+            <%= f.label :name, "ジャンル名" %>
+            <%= f.text_field :name, placeholder:"ジャンルを入力してください" %>
+            <%=f.submit "変更を保存", class:"btn btn-success py-0" %>
+          </div>
+        <% end %>
+    </div>
+  </div>
+
+</div>
